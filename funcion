@@ -1,0 +1,23 @@
+function [a0,a1] = rcuadrados(x,y)
+%{
+Joel Quintuna
+x: vector con valores de x
+y: vector con valores de y
+a0 y a1: son coeficientes que representan la intersección con el eje y y la
+pendiente respectivamente.
+%}
+
+n = length(x) %longitud de los vectores
+sxi_yi= sum(x.*y) %sumatoria de x*y
+sxi= sum(x) %sumatoria de x
+sxic= sum(x.^2) %sumatoria de xi al cuadrado
+csxi=(sxi)^2 %sumatoria de x al cuadrado
+syi= sum(y) %sumatoria de x*y
+a1=((n*sxi_yi)-(sxi*syi))/(n*sxic-csxi) 
+y_=mean(y) %promedio
+x_=mean(x)
+a0=y_-a1*x_
+y1= a0+a1*x %ecuacion q describira la recta
+plot(x,y,'dk'), grid on, hold on;axis([0 12,0 12])
+plot(x,y1,'r--')
+legend('Conjunto de datos','linea de ajuste')
